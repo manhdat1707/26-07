@@ -22,21 +22,10 @@ class User (Model):
     def get_list_user():
         data_select = list(User.select().dicts())
         return data_select
-    def get_by_id(id):
-        return list(User.get_by_id(id))
-    def update(id,name,age):
-        User.update(name=name,age=age).where(User.id == id)
-
-        
-        
-
-
-
-
-
-
-
-
+    def update_one_user(id, name, age):
+       q = User.update(name=name, age=age).where(User.id == id)
+       q.execute() 
+  
 
 db.connect()
 db.create_tables([User])
