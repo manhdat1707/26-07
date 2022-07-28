@@ -1,5 +1,6 @@
 
-
+from genericpath import exists
+from numpy import delete
 from config import *
 
 
@@ -29,7 +30,7 @@ def update_User(id):
             "data": results
         }), 200
     else :
-        return "khong tim thay id ",400
+        return "khong tim thay id "
             
 
 
