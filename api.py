@@ -1,6 +1,3 @@
-
-from genericpath import exists
-from numpy import delete
 from config import *
 
 
@@ -26,14 +23,15 @@ def update_user(id):
             request_data = request.get_json()
             User.update_one_user(id ,request_data['name'], request_data['age'])
             r.delete("user")
-            results = list(User.select().where(User.id == id).dicts())
+            results = User.json(User.get_by_id(id))
+
             return jsonify({
                 "code":0,
                 "data": results
             }), 200
 
         except Exception as e:
-            return jsonify({'error': e})
+             return jsonify({'error': e})
 
 
     else :
@@ -46,4 +44,3 @@ def update_user(id):
     
 if __name__ == "__main__":
     app.run(port=8000, debug=True)
-
